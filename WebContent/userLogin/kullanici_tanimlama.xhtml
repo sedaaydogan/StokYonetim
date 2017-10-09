@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+</h:head>
+<h:body>
+	<h:form>
+		<p:fieldset legend="Kullanıcı Tanımlamaları" style="margin-top:20px;">
+			<h:panelGrid columns="3" cellpadding="10">
+
+				<h:outputLabel for="username" value="Kullanıcı adı:"
+					style="color:black; font-weight:normal;" />
+				<p:inputText id="username" value="#{userController.username}"
+					style="width:150px;"
+					requiredMessage="Kullanıcı adı alanı zorunludur!" />
+				<h:message for="username" />
+
+
+				<h:outputLabel for="sicilNo" value="Sicil no:"
+					style="color:black; font-weight:normal;" />
+				<p:inputText id="sicilNo" value="#{userController.sicilNo}"
+					style="width:150px;" requiredMessage="Sicil Numarası zorunludur!" />
+				<h:message for="sicilNo" />
+
+
+				<h:outputLabel for="password" value="Şifre:"
+					style="color:black; font-weight:normal;" />
+				<p:password id="password" value="#{userController.password}"
+					style="width:150px;" />
+				<h:message for="password" />
+
+
+				<h:outputLabel for="role" value="Role:"
+					style="color:black; font-weight:normal;" />
+					
+					
+				<p:selectOneMenu id="role" value="#{userController.role_id}"
+					style="width:124px;">
+					<f:selectItem itemValue="#{null}" itemLabel="Lütfen seçiniz..." />
+					<f:selectItems value="#{userController.roleList}" var="userRole"
+						itemValue="#{userRole.id}" itemLabel="#{userRole.roleName}" />
+				</p:selectOneMenu>
+				<h:message for="role" />
+				
+				
+				<p:commandButton value="Ekle" icon="ui-icon-disk" ajax="false"
+					action="#{userController.UserEkle()}" title="Icon Only" style="left:192px; margin-top:20px;" />
+				<h:outputLabel />
+			</h:panelGrid>
+
+
+
+			<p:dataTable value="#{userController.getUserList()}" var="user"
+				style="margin-top:70px; width:900px;">
+
+				<p:column headerText="Kullanıcı Adı">
+					<h:outputText value="#{user.username}" />
+				</p:column>
+
+				<p:column headerText="Sicili">
+					<h:outputText value="#{user.sicilNo}" />
+				</p:column>
+
+				<p:column headerText="Rol">
+					<h:outputText value="#{user.role.roleName}" />
+				</p:column>
+
+				<p:column headerText="İşlem" width="150px;">
+					<p:commandButton action="#{userController}" type="button"
+						ajax="false" icon="ui-icon-pencil" style="left:20px;" />
+					<p:commandButton icon="ui-icon-close"
+						action="#{userController.UserSil(user.id)}" ajax="false"
+						style="left:40px;" />
+				</p:column>
+			</p:dataTable>
+
+		</p:fieldset>
+	</h:form>
+</h:body>
+
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+</h:head>
+
+<h:body>
+	<h:form>
+		<p:fieldset legend="Ekipman Servis Takip Gidiş"
+			style="margin-top:20px;">
+			<h:panelGrid>
+				<h:panelGrid cellpadding="5" columns="5" style="width:1400px;">
+
+					<h:outputLabel for="k_adi" value="Kullanıcı Adı"
+						style="position:fixed; margin-left:17px;" />
+
+					<h:outputLabel for="seri_no" value="Cihaz Seri No"
+						style="position:fixed; margin-left:15px;" />
+
+					<h:outputLabel value="Ekipman Türü"
+						style="position:fixed; margin-left:16px;" />
+
+					<h:outputLabel for="model" value="Model"
+						style="position:fixed; margin-left:18px;" />
+				</h:panelGrid>
+
+				<h:panelGrid columns="5" cellpadding="20" style="width:1400px;">
+					<p:selectOneMenu value="#{ekipmanGidisController.userId}" style="position:fixed; width:207px;">
+						<f:selectItem itemLabel="Lütfen seçiniz..." itemValue="#{null}" />
+						<f:selectItems value="#{userController.userList}" var="userList"
+							itemLabel="#{userList.username}" itemValue="#{userList.id}" />
+					</p:selectOneMenu>
+
+
+					<p:inputText id="seri_no" value="#{ekipmanGidisController.seriNo}" style="position:fixed;"/>
+
+					<p:selectOneMenu value="#{ekipmanGidisController.ekipmanId}" style="width:207px; position:fixed;">
+						<f:selectItem itemLabel="Lütfen seçiniz..." itemValue="#{null}"/>
+						<f:selectItems value="#{ekipmanController.ekipmanList}" var="ekipman"
+						itemLabel="#{ekipman.ekipmanAdi}" itemValue="#{ekipman.id}"/>
+					</p:selectOneMenu>
+
+					<p:inputText id="model" value="#{ekipmanGidisController.model}" style="position:fixed;"/>
+				</h:panelGrid>
+				<br/>
+				<h:panelGrid columns="3" cellpadding="5">
+					<h:outputLabel for="gidis" value="Gidiş Tarihi"
+						style="position:fixed; margin-left:15px; margin-top:50px;" />
+					<h:outputLabel for="aciklama" value="Açıklama"
+						style="margin-left:703px; position:fixed; margin-top:85px;" />
+					<h:outputLabel for="firma" value="Firma"
+						style="position:fixed; margin-left:335px; margin-top:50px;" />
+				</h:panelGrid>
+
+				<h:panelGrid columns="3" style="margin-top:5px;">
+
+					<p:calendar id="gidis" mask="true" value="#{ekipmanGidisController.gidisTarihi}"
+						style="margin-left:18px; position:fixed;" pattern="dd-MM-yyyy"/>
+
+					<p:inputText id="firma" value="#{ekipmanGidisController.firmaAdi}"
+						style="margin-left:360px; position:fixed;" />
+
+					<p:inputTextarea rows="5" cols="47" queryDelay="500" value="#{ekipmanGidisController.aciklama}"
+						minQueryLength="4" style="margin-left:805px; margin-top:25px;" />
+
+
+				</h:panelGrid>
+				<p:commandButton value="Kaydet" action="#{ekipmanGidisController.EkipmanGidisKaydet()}"
+					style="margin-left:1218px; margin-top:50px;" ajax="false"/>
+
+
+				<p:dataTable value="#{ekipmanGidisController.ekipmanServisGidisList}" var="ekipman"
+					style="margin-top:70px; width:1315px;">
+
+					<p:column headerText="Kullanıcı Adı">
+						<h:outputText value="#{ekipman.user.username}"/>
+					</p:column>
+
+					<p:column headerText="Cinsi">
+						<h:outputText value="#{ekipman.ekipmanAdi}"/>
+					</p:column>
+
+					<p:column headerText="Model">
+						<h:outputText value="#{ekipman.model}"/>
+					</p:column>
+
+					<p:column headerText="Gidiş Tarihi">
+						<h:outputText value="#{ekipman.gidisTarihi}">
+							<f:convertDateTime pattern="dd-MM-yyyy"/>
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="Firma">
+						<h:outputText value="#{ekipman.firmaAdi}"/>
+					</p:column>
+
+					<p:column headerText="İşlem" width="150px;">
+						<p:commandButton action="#{userController}" type="button"
+							ajax="false" icon="ui-icon-pencil" />
+						<p:commandButton icon="ui-icon-close"
+							action="#{ekipmanGidisController.EkipmanGidisSil(ekipman.id)}" ajax="false"
+							style="left:10px;" />
+						<p:commandButton icon="ui-icon-arrowrefresh-1-w"
+							action="#{anasayfaController.gotoPage(2)}" ajax="false"
+							style="left:20px;" />
+					</p:column>
+				</p:dataTable>
+
+				<p:commandButton value="Excel"
+					style="margin-top:30px; margin-left:1233px;" />
+			</h:panelGrid>
+		</p:fieldset>
+
+	</h:form>
+</h:body>
+
+</html>

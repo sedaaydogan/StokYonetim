@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+</h:head>
+
+<h:body>
+	<h:form>
+		<p:fieldset legend="Malzeme Çıkış">
+
+			<h:panelGrid columns="6" style="width:900px; margin-top:20px; margin-left:5px;">
+				<p:selectOneMenu value="#{malzemeCikisController.malzeme_id}" style="width:180px; margin-top:27px; position:absolute;">
+					<f:selectItem itemValue="#{null}" itemLabel="Lütfen seçiniz..."/>
+					<f:selectItems value="#{malzemeController.malzemeList}" var="malzeme" itemLabel="#{malzeme.malzemeAdi}" itemValue="#{malzeme.id}"/>
+				</p:selectOneMenu>
+				<h:outputLabel value="Çıkış Adeti" style="position:absolute; width:180px;"/>
+				<h:outputLabel value="Çıkış Tarihi" style="position:absolute; width:180px;"/>
+			</h:panelGrid>
+
+			<h:panelGrid columns="6" style="width:1150px; margin-top:20px; margin-left:300px;" cellpadding="5">
+				<p:inputText style="width:200px;" value="#{malzemeCikisController.cikisAdet}" />
+				<p:calendar id="giris_tarih" pattern="dd-MM-yyyy" mask="true" value="#{malzemeCikisController.cikisTarih}" style=" margin-right:380px;" />
+			</h:panelGrid>
+
+			<br />
+
+			<h:panelGrid columns="2" style="margin-left:10px;" cellpadding="5">
+				<h:outputLabel for="aciklama" value="Açıklama" />
+				<p:inputTextarea rows="4" cols="63" queryDelay="500"
+					minQueryLength="4" style="margin-left:90px;" value="#{malzemeCikisController.aciklama}"/>
+
+			</h:panelGrid>
+			<br />
+			<p:commandButton value="Kaydet" action="#{malzemeCikisController.MalzemeCikisYap()}" ajax="false" style="margin-left:753px;" />
+
+
+			<p:dataTable value="#{malzemeCikisController.malzemeCikisList}" var="malzeme"
+				style="margin-top:70px; width:826px; margin-left:23px;">
+
+				<p:column headerText="Malzeme">
+					<h:outputText value="#{malzeme.malzemeAdi}"/>
+				</p:column>
+
+				<p:column headerText="Çıkış Adeti">
+					<h:outputText value="#{malzeme.cikisAdet}"/>
+				</p:column>
+
+				<p:column headerText="Çıkış Tarihi">
+					<h:outputText value="#{malzeme.cikisTarih}">
+						<f:convertDateTime pattern="dd-MM-yyyy"/>
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="Açıklama">
+					<h:outputText value="#{malzeme.aciklama}"/>
+				</p:column>
+
+				<p:column headerText="İşlem" width="100px;">
+					<p:commandButton action="#{userController}" type="button"
+						ajax="false" icon="ui-icon-pencil" />
+					<p:commandButton icon="ui-icon-close"
+						action="#{malzemeCikisController.MalzemeCikisSil(malzeme.id)}" ajax="false"
+						style="left:15px;" />
+				</p:column>
+			</p:dataTable>
+			<br />
+			<br />
+			<p:commandButton value="Excel"
+				style="margin-left:751px; width:100px;" />
+
+			<p:dataTable value="#{malzemeController.malzemeList}" var="malzeme" style="margin-top:70px; width:825px; margin-left:23px;">
+
+				<p:column headerText="Malzeme">
+					<h:outputText value="#{malzeme.malzemeAdi}" />
+				</p:column>
+
+				<p:column headerText="Maksimum">
+					<h:outputText value="#{malzeme.maximum}"/>
+				</p:column>
+
+				<p:column headerText="Minimum">
+					<h:outputText value="#{malzeme.minimum}"/>
+				</p:column>
+
+				<p:column headerText="Mevcut">
+					<h:outputText value="#{malzeme.mevcut}"/>
+				</p:column>
+			</p:dataTable>
+		</p:fieldset>
+
+	</h:form>
+</h:body>
+
+</html>

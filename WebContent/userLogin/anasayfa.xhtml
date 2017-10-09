@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+</h:head>
+
+<h:body>
+
+	<h:form>
+<!-- 				<div class="saat"> -->
+<!-- 					<p:clock pattern="HH:mm:ss dd.MM.yyyy" mode="server" autoSync="true" syncInterval="600000" /> -->
+<!-- 				</div> -->
+
+		<p:menubar>
+			<p:submenu label="Ekipman Servis Takip" expanded="false">
+				<p:menuitem value="Ekipman Servis Takip Gidiş"
+					actionListener="#{anasayfaController.gotoPage(1)}"
+					update="ortasayfa" ajax="false" />
+				<p:menuitem value="Ekipman Servis Takip Dönüş"
+					actionListener="#{anasayfaController.gotoPage(2)}"
+					update="ortasayfa" ajax="false" />
+			</p:submenu>
+
+			<p:submenu label="Stok Takip" expanded="false">
+				<p:menuitem value="Malzeme Girişi"
+					actionListener="#{anasayfaController.gotoPage(3)}"
+					update="ortasayfa" ajax="false" />
+				<p:menuitem value="Malzeme Çıkışı"
+					actionListener="#{anasayfaController.gotoPage(4)}"
+					update="ortasayfa" ajax="false" />
+			</p:submenu>
+
+			<p:submenu label="Tanımlamalar" expanded="false">
+				<p:menuitem value="Sarf Malzeme Tanımlama"
+					actionListener="#{anasayfaController.gotoPage(5)}"
+					update="ortasayfa" ajax="false" />
+				<p:menuitem value="Ekipman Tanımlama"
+					actionListener="#{anasayfaController.gotoPage(6)}"
+					update="ortasayfa" ajax="false" />
+				<p:menuitem value="Kullanıcı Tanımlama"
+					actionListener="#{anasayfaController.gotoPage(7)}"
+					update="ortasayfa" ajax="false" />
+			</p:submenu>
+			<f:facet name="options">
+				<p:commandButton value="Çıkış" icon="ui-icon-extlink"
+					action="login.xhtml?faces-redirect=true" ajax="false" />
+			</f:facet>
+		</p:menubar>
+
+
+	</h:form>
+
+
+	<div id="wrapper">
+
+		<div id="content">
+
+			<p:panel id="ortasayfa">
+				<ui:include src="#{anasayfaController.formPath}" />
+			</p:panel>
+
+		</div>
+	</div>
+
+
+</h:body>
+
+</html>

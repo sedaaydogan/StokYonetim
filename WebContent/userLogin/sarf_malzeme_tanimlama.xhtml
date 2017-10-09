@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+</h:head>
+
+<h:body>
+	<h:form id="sarfMalzemeId">
+		<p:fieldset legend="Sarf Malzeme Tanımlama" style="margin-top:20px;">
+			
+			<h:panelGrid>
+				<h:panelGrid columns="3" cellpadding="5">
+					<h:outputLabel value="Malzeme Adı:" />
+					<p:inputText value="#{malzemeController.malzemeAdi}" />
+					<p:commandButton value="Ekle"
+						action="#{malzemeController.MalzemeEkle()}" ajax="false" />
+				</h:panelGrid>
+
+				<h:panelGrid columns="2" cellpadding="5">
+					<h:outputLabel value="Maximum:" />
+					<p:inputText value="#{malzemeController.maximum}"
+						style="margin-left:26px; width:50px;" />
+				</h:panelGrid>
+
+				<h:panelGrid columns="2" cellpadding="5">
+					<h:outputLabel value="Minimum:" />
+					<p:inputText value="#{malzemeController.minimum}"
+						style="margin-left:32px; width:50px;" />
+				</h:panelGrid>
+
+
+				<p:dataTable value="#{malzemeController.malzemeList}"
+					var="malzeme" style="margin-top:30px; width:670px;">
+
+					<p:column headerText="Sarf Malzeme Adı" style="width:200px;">
+						<h:outputText value="#{malzeme.malzemeAdi}" />
+					</p:column>
+
+					<p:column headerText="Max" style="width:60px;">
+						<h:outputText value="#{malzeme.maximum}" />
+					</p:column>
+
+					<p:column headerText="Min" style="width:60px;">
+						<h:outputText value="#{malzeme.minimum}" />
+					</p:column>
+					<p:column headerText="İşlem" style="width:100px;">
+						<p:commandButton icon="ui-icon-pencil" style="margin-left:20px;"/>
+						<p:commandButton icon="ui-icon-close"
+							action="#{malzemeController.MalzemeSil(malzeme.id)}"
+							style="left:17px;" ajax="false" />
+					</p:column>
+				</p:dataTable>
+
+				<h:panelGrid style="margin-top:30px;" columns="2" cellpadding="5">
+					<h:outputLabel value="Malzeme Adı:" />
+					<p:inputText />
+				</h:panelGrid>
+
+				<h:panelGrid columns="2" cellpadding="5">
+					<h:outputLabel value="Maximum:" />
+					<p:inputText style="margin-left:26px; width:50px;" />
+				</h:panelGrid>
+
+				<h:panelGrid columns="2" cellpadding="5">
+					<h:outputLabel value="Minimum:" />
+					<p:inputText style="margin-left:32px; width:50px;" />
+				</h:panelGrid>
+				<p:commandButton value="Güncelle" />
+			</h:panelGrid>
+
+
+
+		</p:fieldset>
+
+
+	</h:form>
+</h:body>
+
+</html>

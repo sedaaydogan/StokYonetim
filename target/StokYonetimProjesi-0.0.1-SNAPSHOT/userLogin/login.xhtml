@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" >
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Kullanıcı Girişi</title>
+</h:head>
+<h:body>
+
+	<p:growl id="growl" sticky="true" />
+
+	<h:form>
+
+		<p:panel header="Lütfen giriş yapınız!" 
+			style="position: absolute; top:250px; left:550px; font-weight:bold;">
+			<h:panelGrid columns="2" cellpadding="10">
+
+				<p:outputLabel for="username" value="Kullanıcı Adı: " style="color:black; font-weight:bold;"/>
+				<p:inputText id="username" value="#{userController.username}"
+					required="true"
+					requiredMessage="kullanıcı adı alanını girmediniz!!!" />
+
+				<p:outputLabel for="password" value="Şifre: " style="color:black; font-weight:bold;" />
+				<p:password id="password" value="#{userController.password}" 
+					required="true" requiredMessage="Parola alanını girmediniz!!!" />
+
+
+				<p:commandButton value="Giriş" icon="ui-icon-check"
+					action="#{userController.getKullaniciDogrula()}" update="growl" ajax="false" />
+			</h:panelGrid>
+		</p:panel>
+	</h:form>
+
+</h:body>
+</h:html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+</h:head>
+
+<h:body>
+	<h:form>
+
+		<p:fieldset legend="Ekipman Servis Takip Dönüş"
+			style="margin-top:20px;">
+			<h:panelGrid cellpadding="3">
+				<h:panelGrid cellpadding="3" columns="5" style="width:1000px;">
+
+					<h:outputLabel for="donus_tarih" value="Dönüş Tarihi"
+						style="position:fixed; margin-left:17px;" />
+
+					<h:outputLabel for="faturaNo" value="Fatura No"
+						style="position:fixed; margin-left:20px;" />
+
+					<h:outputLabel value="Fatura Tarihi"
+						style="position:fixed; margin-left:19px;" />
+
+				</h:panelGrid>
+
+				<h:panelGrid columns="5" cellpadding="20" style="width:1000px;">
+					<p:calendar id="donus_tarih" pattern="dd-MM-yyyy" mask="true" />
+
+					<p:inputText id="faturaNo" />
+
+					<p:calendar id="fatura" pattern="dd-MM-yyyy" mask="true" />
+				</h:panelGrid>
+
+				<h:panelGrid columns="4"
+					style=" margin-left:200px; margin-bottom:15px;">
+					<h:outputLabel value="TL" style="position:fixed;" />
+					<h:outputLabel value="USD"
+						style="position:fixed; margin-left:295px;" />
+					<h:outputLabel value="EUR"
+						style="position:fixed; margin-left:595px;" />
+					<h:outputLabel value="Euro Kur"
+						style="position:fixed; margin-left:893px;" />
+
+				</h:panelGrid>
+
+				<h:panelGrid columns="5" style="width:1400px;" cellpadding="10">
+
+					<h:outputLabel value="Servis Ücreti" style="margin-left:17px;" />
+					<p:inputText></p:inputText>
+					<p:inputText></p:inputText>
+					<p:inputText></p:inputText>
+					<p:inputText></p:inputText>
+
+					<h:outputLabel value="Parça Ücreti" style="margin-left:17px;" />
+					<p:inputText></p:inputText>
+					<p:inputText></p:inputText>
+					<p:inputText></p:inputText>
+					<h:outputLabel value="Dolar Kur"></h:outputLabel>
+
+
+					<h:outputLabel value="Toplam Maliyet" style="margin-left:17px;" />
+					<p:inputText></p:inputText>
+					<p:inputText></p:inputText>
+					<p:inputText></p:inputText>
+					<p:inputText></p:inputText>
+				</h:panelGrid>
+
+				<h:panelGrid columns="2" style="margin-left:30px;">
+					<h:outputLabel for="aciklama" value="Açıklama" />
+					<p:inputTextarea rows="5" cols="50" queryDelay="500"
+						minQueryLength="4" style="margin-left:90px;" />
+				</h:panelGrid>
+				<p:commandButton value="Kaydet" style="margin-left:1240px; margin-top:30px;"/>
+			</h:panelGrid>
+		</p:fieldset>
+
+	</h:form>
+</h:body>
+
+</html>

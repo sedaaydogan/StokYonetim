@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+</h:head>
+
+<h:body>
+	<h:form>
+		<p:fieldset legend="Malzeme Çıkış">
+
+			<h:panelGrid columns="6"
+				style="width:900px; margin-top:20px; margin-left:5px;">
+				<p:selectOneMenu value="Malzeme"
+					style="width:150px; margin-top:27px; position:absolute;">
+				<f:selectItems value="#{malzemeController.malzemeList}"></f:selectItems>
+				</p:selectOneMenu>
+
+				<h:outputLabel value="Çıkış Adeti"
+					style="position:absolute; margin-right:50px;"></h:outputLabel>
+				<h:outputLabel value="Çıkış Tarihi" style="position:absolute;"></h:outputLabel>
+
+			</h:panelGrid>
+
+			<h:panelGrid columns="6"
+				style="width:1150px; margin-top:20px; margin-left:300px;"
+				cellpadding="5">
+				<p:inputText style="width:200px;" />
+				<p:calendar id="giris_tarih" pattern="dd-MM-yyyy" mask="true"
+					style=" margin-right:380px;" />
+			</h:panelGrid>
+
+			<br />
+
+			<h:panelGrid columns="2" style="margin-left:10px;" cellpadding="5">
+				<h:outputLabel for="aciklama" value="Açıklama" />
+				<p:inputTextarea rows="4" cols="100" queryDelay="500"
+					minQueryLength="4" style="margin-left:90px;" />
+
+			</h:panelGrid>
+			<br />
+			<p:commandButton value="Kaydet" style="margin-left:1400px;" />
+
+
+			<p:dataTable value="#{userController.getUserList()}" var="user"
+				style="margin-top:70px; width:1200px; margin-left:23px;">
+
+				<p:column headerText="Malzeme">
+					<h:outputText />
+				</p:column>
+
+				<p:column headerText="Çıkış Adeti">
+					<h:outputText />
+				</p:column>
+
+				<p:column headerText="Çıkış Tarihi">
+					<h:outputText />
+				</p:column>
+
+				<p:column headerText="Açıklama">
+					<h:outputText />
+				</p:column>
+
+				<p:column headerText="İşlem" width="100px;">
+					<p:commandButton action="#{userController}" type="button"
+						ajax="false" icon="ui-icon-pencil" />
+					<p:commandButton icon="ui-icon-close"
+						action="#{userController.UserSil(user.id)}" ajax="false"
+						style="left:15px;" />
+				</p:column>
+			</p:dataTable>
+			<br />
+			<p:commandButton value="Excel"
+				style="margin-left:1398px; width:100px;" />
+
+			<p:dataTable value="#{malzemeController.getMalzemeList()}" var="user"
+				style="margin-top:70px; width:805px; margin-left:23px;">
+
+				<p:column headerText="Malzeme">
+					<h:outputText value="" />
+				</p:column>
+
+				<p:column headerText="Maksimum">
+					<h:outputText />
+				</p:column>
+
+				<p:column headerText="Minimum">
+					<h:outputText />
+				</p:column>
+
+				<p:column headerText="Mevcut">
+					<h:outputText />
+				</p:column>
+			</p:dataTable>
+		</p:fieldset>
+
+	</h:form>
+</h:body>
+
+</html>

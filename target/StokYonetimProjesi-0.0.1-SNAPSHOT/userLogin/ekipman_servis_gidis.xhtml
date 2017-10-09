@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+</h:head>
+
+<h:body>
+	<h:form>
+		<p:fieldset legend="Ekipman Servis Takip Gidiş"
+			style="margin-top:20px;">
+			<h:panelGrid>
+				<h:panelGrid cellpadding="5" columns="5" style="width:1400px;">
+
+					<h:outputLabel for="k_adi" value="Kullanıcı Adı"
+						style="position:absolute; margin-left:17px;" />
+
+					<h:outputLabel for="seri_no" value="Cihaz Seri No"
+						style="position:absolute; margin-left:25px;" />
+
+					<h:outputLabel value="Ekipman Türü"
+						style="position:absolute; margin-left:32px;" />
+
+					<h:outputLabel for="model" value="Model"
+						style="position:absolute; margin-left:24px;" />
+
+					<h:outputLabel for="k_yeri" value="Kullanım Yeri"
+						style="position:absolute; margin-left:30px;" />
+				</h:panelGrid>
+
+				<h:panelGrid columns="5" cellpadding="20" style="width:1400px;">
+					<p:inputText id="k_adi" />
+
+					<p:inputText id="seri_no" />
+
+					<p:selectOneMenu value="Ekipman Türü" style="width:190px;">
+						<f:selectItems value="#{ekipmanController.getEkipmanAdList()}"></f:selectItems>
+					</p:selectOneMenu>
+
+					<p:inputText id="model" />
+
+					<p:inputText id="k_yeri" />
+				</h:panelGrid>
+
+				<h:panelGrid columns="3" cellpadding="5">
+					<h:outputLabel for="gidis" value="Gidiş Tarihi"
+						style="position:absolute; margin-left:15px; margin-top:50px;" />
+					<h:outputLabel for="aciklama" value="Açıklama"
+						style="margin-left:750px; position:absolute; margin-top:85px;" />
+					<h:outputLabel for="firma" value="Firma"
+						style="position:absolute; margin-left:285px; margin-top:50px;" />
+				</h:panelGrid>
+
+				<h:panelGrid columns="3" style="margin-top:5px;">
+
+					<p:calendar id="gidis" pattern="dd-MM-yyyy" mask="true"
+						style="margin-left:18px; position:absolute;" />
+
+					<p:inputText id="firma"
+						style="margin-left:306px; position:absolute;" />
+
+					<p:inputTextarea rows="5" cols="50" queryDelay="500"
+						minQueryLength="4" style="margin-left:865px; margin-top:25px;" />
+
+
+				</h:panelGrid>
+				<p:commandButton value="Kaydet"
+					style="margin-left:1305px; margin-top:50px;" />
+
+
+				<p:dataTable value="" var="user"
+					style="margin-top:70px; width:1400px;">
+
+					<p:column headerText="Kullanıcı Adı">
+						<h:outputText />
+					</p:column>
+
+					<p:column headerText="Cinsi">
+						<h:outputText />
+					</p:column>
+
+					<p:column headerText="Model">
+						<h:outputText />
+					</p:column>
+
+					<p:column headerText="Gidiş Tarihi">
+						<h:outputText />
+					</p:column>
+
+					<p:column headerText="Firma">
+						<h:outputText />
+					</p:column>
+
+					<p:column headerText="İşlem" width="150px;">
+						<p:commandButton action="#{userController}" type="button"
+							ajax="false" icon="ui-icon-pencil" />
+						<p:commandButton icon="ui-icon-close"
+							action="#{userController.UserSil(user.id)}" ajax="false"
+							style="left:10px;" />
+						<p:commandButton icon="ui-icon-arrowrefresh-1-w"
+							action="#{anasayfaBean.gotoPage(2)}"
+							ajax="false" style="left:20px;" />
+					</p:column>
+				</p:dataTable>
+
+				<p:commandButton value="Excel"
+					style="margin-top:10px; margin-left:1318px;" />
+			</h:panelGrid>
+		</p:fieldset>
+
+	</h:form>
+</h:body>
+
+</html>

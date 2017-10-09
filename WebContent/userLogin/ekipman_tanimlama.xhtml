@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+</h:head>
+
+<h:body>
+	<h:form>	
+		<p:fieldset legend="Ekipman Tanımlama" style="margin-top:20px;">
+
+			<h:panelGrid>
+				<h:panelGrid columns="2" cellpadding="10">
+					<h:panelGrid columns="2" cellpadding="10">
+						<h:outputLabel for="ekipman" value="Ekipman Adı:" />
+						<p:inputText id="ekipman" value="#{ekipmanController.ekipmanAdi}" requiredMessage="Boş bırakılamaz!"/>
+					</h:panelGrid>
+					<p:commandButton value="Ekle" actionListener="#{ekipmanController.EkipmanEkle()}" ajax="false"/>
+				</h:panelGrid>
+
+				<p:dataTable value="#{ekipmanController.EkipmanGetir()}" var="ekipman"
+					style="margin-top:30px; margin-left:50px; width:550px;">
+
+					<p:column headerText="Ekipman Türü" style="width:150px;">
+						<h:outputText value="#{ekipman.ekipmanAdi}" />
+					</p:column>
+
+					<p:column headerText="İşlem" style="width:70px;">
+						<p:commandButton icon="ui-icon-pencil" style="margin-left:27px;" />
+						<p:commandButton icon="ui-icon-close" action="#{ekipmanController.EkipmanSil(ekipman.id)}" ajax="false" style="left:27px;" />
+					</p:column>
+
+				</p:dataTable>
+
+
+
+				<h:panelGrid columns="3" cellpadding="10"
+					style="margin-top:40px; margin-left:100px;">
+					<h:panelGrid columns="2" cellpadding="10">
+						<h:outputLabel for="malzeme" value="Malzeme Cinsi Adı:" />
+						<p:inputText id="malzeme"  />
+					</h:panelGrid>
+					<p:commandButton value="Güncelle" />
+				</h:panelGrid>
+			</h:panelGrid>
+		</p:fieldset>
+	</h:form>
+</h:body>
+
+</html>

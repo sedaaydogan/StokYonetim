@@ -1,0 +1,25 @@
+<p:dialog header="Kullanýcý Güncelle" showEffect="explode"
+						hideEffect="bounce" id="guncelle" widgetVar="guncelle">
+						<p:panelGrid columns="2" style="width:500px;height:250px;">
+							<h:outputLabel for="username" value="Kullanýcý adý:" />
+							<p:inputText id="username" value="#{userController.username}" />
+
+							<h:outputLabel for="sicilNo" value="Sicil no:" />
+							<p:inputText id="sicilNo" value="#{userController.sicilNo}" />
+
+
+							<h:outputLabel for="password" value="Þifre:" />
+							<p:password id="password" value="#{userController.password}" />
+
+							<h:outputLabel for="role" value="Role:" />
+							<p:selectOneMenu id="role" value="#{userController.role}"
+								style="width:190px;">
+								<f:selectItems value="#{userController.roles}" />
+							</p:selectOneMenu>
+
+							<f:facet name="footer">
+								<p:commandButton value="Güncelle"
+									action="#{userController.UserGuncelle(user.id)}" ajax="false" />
+							</f:facet>
+						</p:panelGrid>
+					</p:dialog>

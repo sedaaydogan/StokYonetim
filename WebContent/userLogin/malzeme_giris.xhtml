@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+
+</h:head>
+
+<h:body>
+	<h:form>
+		<p:fieldset legend="Malzeme Giriş" style="margin-top:20px;">
+
+
+			<h:panelGrid columns="6"
+				style="width:1400px; margin-top:20px; margin-left:5px;">
+
+				<p:selectOneMenu value="#{malzemeGirisController.malzeme_id}" style="width:150px; margin-top:28px; position:absolute;">
+					<f:selectItem itemValue="#{null}" itemLabel="Lütfen seçiniz..." />
+					<f:selectItems value="#{malzemeController.malzemeList}" var="malzeme"  itemValue="#{malzeme.id}" itemLabel="#{malzeme.malzemeAdi}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="Giriş Adedi" style="position:absolute; margin-left:65px;" />
+
+				<p:outputLabel value="Giriş Tarihi" style="position:absolute; margin-left:60px;" />
+
+				<p:outputLabel value="Firma" style="position:absolute; margin-left:93px;" />
+
+				<p:outputLabel value="Fatura No" style="position:absolute; margin-left:85px;" />
+
+				<p:outputLabel value="Fatura Tarih" style="position:absolute; margin-left:80px;" />
+
+			</h:panelGrid>
+
+
+			<h:panelGrid columns="6" style="width:1215px; margin-top:20px; margin-left:300px;" cellpadding="5">
+				<p:inputText style="width:200px;" value="#{malzemeGirisController.girisAdet}" />
+				<p:calendar id="giris_tarih" mask="true" value="#{malzemeGirisController.girisTarih}" />
+				<p:inputText style="width:200px;" value="#{malzemeGirisController.firma}" />
+				<p:inputText style="width:200px;" value="#{malzemeGirisController.faturaNo}" />
+				<p:calendar id="fatura_tarih" pattern="dd-MM-yyyy" mask="true" value="#{malzemeGirisController.faturaTarih}" />
+			</h:panelGrid>
+			
+			<br />
+			<br />
+			
+			<h:panelGrid columns="3" style="margin-left:10px;" cellpadding="5">
+				<h:outputLabel for="aciklama" value="Açıklama" />
+				<p:inputTextarea rows="4" cols="56" queryDelay="500" minQueryLength="4" style="margin-left:90px;" value="#{malzemeGirisController.aciklama}" />
+				<p:commandButton value="Kaydet" style="margin-left:605px; margin-top:65px;" action="#{malzemeGirisController.MalzemeGirisKayıt()}" ajax="false" />
+			</h:panelGrid>
+			
+			<br />
+
+
+			<p:dataTable value="#{malzemeGirisController.getMalzemeGirisList()}"
+				var="malzemeGiris"
+				style="margin-top:70px; width:1475px; margin-left:23px;">
+
+				<p:column headerText="Malzeme">
+					<h:outputText value="#{malzemeGiris.malzeme.malzemeAdi}" />
+				</p:column>
+
+				<p:column headerText="Giriş Adeti">
+					<h:outputText value="#{malzemeGiris.girisAdet}" />
+				</p:column>
+
+				<p:column headerText="Giriş Tarihi">
+					<h:outputText value="#{malzemeGiris.girisTarih}">
+						<f:convertDateTime pattern="dd-MM-yyyy" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="Firma">
+					<h:outputText value="#{malzemeGiris.firmaAdi}" />
+				</p:column>
+
+				<p:column headerText="Fatura No">
+					<h:outputText value="#{malzemeGiris.faturaNo}" />
+				</p:column>
+
+				<p:column headerText="Fatura Tarihi">
+					<h:outputText value="#{malzemeGiris.faturaTarih}">
+						<f:convertDateTime pattern="dd-MM-yyyy" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="Açıklama">
+					<h:outputText value="#{malzemeGiris.aciklama}" />
+				</p:column>
+				<p:column headerText="İşlem" width="100px;">
+					<p:commandButton type="button" ajax="false" icon="ui-icon-pencil" />
+					<p:commandButton icon="ui-icon-close"
+						actionListener="#{malzemeGirisController.MalzemeGirisSil(malzemeGiris.id)}"
+						ajax="false" style="left:15px;" />
+				</p:column>
+			</p:dataTable>
+			<br />
+			<br />
+			<p:commandButton value="Excel" style="margin-left:1415px;" />
+
+			<p:dataTable value="#{malzemeController.getMalzemeList()}"
+				var="malzeme"
+				style="margin-top:70px; width:770px; margin-left:23px;">
+
+				<p:column headerText="Malzeme">
+					<h:outputText value="#{malzeme.malzemeAdi}" />
+				</p:column>
+
+				<p:column headerText="Maksimum">
+					<h:outputText value="#{malzeme.maximum}" />
+				</p:column>
+
+				<p:column headerText="Minimum">
+					<h:outputText value="#{malzeme.minimum}" />
+				</p:column>
+
+				<p:column headerText="Mevcut">
+					<h:outputText value="#{malzeme.mevcut}" />
+				</p:column>
+			</p:dataTable>
+		</p:fieldset>
+	</h:form>
+</h:body>
+
+</html>

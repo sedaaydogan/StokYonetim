@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="ToyotaProje" transaction-type="RESOURCE_LOCAL">
+
+		<class>giris.model.Ekipman</class>
+		<class>giris.model.EkipmanServisDonus</class>
+		<class>giris.model.EkipmanServisGidi</class>
+		<class>giris.model.Malzeme</class>
+		<class>giris.model.MalzemeCiki</class>
+		<class>giris.model.MalzemeGiri</class>
+		<class>giris.model.Role</class>
+		<class>giris.model.User</class>
+		<properties>
+			<!--  
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/StokDeneme" />
+			<property name="javax.persistence.jdbc.user" value="postgres" />
+			<property name="javax.persistence.jdbc.password" value="1234" />
+			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+			<property name="eclipselink.ddl-generation" value="create-tables" />
+			<property name="eclipselink.logging.level" value="OFF" />
+			-->
+
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/stokdeneme" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.password" value="1234" />
+			<property name="eclipselink.ddl-generation" value="create-tables" />
+
+		</properties>
+	</persistence-unit>
+</persistence>
